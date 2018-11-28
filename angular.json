@@ -129,6 +129,41 @@
           }
         }
       }
+    },
+    "theme-lib": {
+      "root": "projects/theme-lib",
+      "sourceRoot": "projects/theme-lib/src",
+      "projectType": "library",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/theme-lib/tsconfig.lib.json",
+            "project": "projects/theme-lib/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/theme-lib/src/test.ts",
+            "tsConfig": "projects/theme-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/theme-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/theme-lib/tsconfig.lib.json",
+              "projects/theme-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "theme-lib-app"

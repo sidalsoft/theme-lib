@@ -16,6 +16,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "theme-lib": [
+        "dist/theme-lib"
+      ],
+      "theme-lib/*": [
+        "dist/theme-lib/*"
+      ]
+    }
   }
 }

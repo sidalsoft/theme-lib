@@ -4,9 +4,9 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { ComponentFactory, ComponentFactoryResolver, Inject, Injectable, Type } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 
-import { Observable, ReplaySubject, Subject, BehaviorSubject } from 'rxjs';
+import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { map, filter, pairwise, distinctUntilChanged, startWith, share } from 'rxjs/operators';
 
 import { NB_THEME_OPTIONS } from '../theme.options';
@@ -23,27 +23,22 @@ export class NbThemeService {
   // TODO: behavioral subject here?
   currentTheme: string;
   private themeChanges$ = new ReplaySubject(1);
-  private appendToLayoutTop$ = new ReplaySubject();
-  private createLayoutTop$ = new Subject();
   private appendLayoutClass$ = new Subject();
   private removeLayoutClass$ = new Subject();
   private changeWindowWidth$ = new ReplaySubject<number>(2);
 
-  constructor(
-    @Inject(NB_THEME_OPTIONS) protected options: any,
-    private breakpointService: NbMediaBreakpointsService,
-    private jsThemesRegistry: NbJSThemesRegistry,
-    private componentFactoryResolver: ComponentFactoryResolver,
-  ) {
+  constructor(@Inject(NB_THEME_OPTIONS) protected options: any,
+              private breakpointService: NbMediaBreakpointsService,
+              private jsThemesRegistry: NbJSThemesRegistry) {
     if (options && options.name) {
       this.changeTheme(options.name);
     }
   }
 
-  // /*
-  //  * Change current application theme
-  //  * @param {string} name
-  //  */
+  /*
+   * Change current application theme
+   * @param {string} name
+   */
   changeTheme(name: string): void {
     this.themeChanges$.next({ name, previous: this.currentTheme });
     this.currentTheme = name;
@@ -53,31 +48,12 @@ export class NbThemeService {
     this.changeWindowWidth$.next(width);
   }
 
-  // /*
-  //  * Append a component to top of the layout
-  //  * (useful for showing modal that should be placed heigher in the document tree)
-  //  *
-  //  * @param {Type<T> | ComponentFactory<T>} entity
-  //  * @returns {Observable<any>}
-  //  */
-  appendToLayoutTop<T>(entity: Type<T> | ComponentFactory<T>): Observable<any> {
-    let factory = entity;
-
-    if (entity instanceof Type) {
-      factory = this.componentFactoryResolver.resolveComponentFactory(entity);
-    }
-
-    const subject = new ReplaySubject(1);
-    this.appendToLayoutTop$.next({ factory, listener: subject });
-    return subject.asObservable();
-  }
-
-  // /*
-  //  * Returns a theme object with variables (color/paddings/etc) on a theme change.
-  //  * Once subscribed - returns current theme.
-  //  *
-  //  * @returns {Observable<NbJSThemeOptions>}
-  //  */
+  /*
+   * Returns a theme object with variables (color/paddings/etc) on a theme change.
+   * Once subscribed - returns current theme.
+   *
+   * @returns {Observable<NbJSThemeOptions>}
+   */
   getJsTheme(): Observable<NbJSThemeOptions> {
     return this.onThemeChange().pipe(
       map((theme: any) => {
@@ -86,25 +62,14 @@ export class NbThemeService {
     );
   }
 
-  // /*
-  //  * Clears layout top
-  //  * @returns {Observable<any>}
-  //  */
-  clearLayoutTop(): Observable<any> {
-    const observable = new BehaviorSubject(null);
-    this.createLayoutTop$.next({ listener: observable });
-    this.appendToLayoutTop$ = new ReplaySubject();
-    return observable.asObservable();
-  }
-
-  // /*
-  //  * Triggers media query breakpoint change
-  //  * Returns a pair where the first item is previous media breakpoint and the second item is current breakpoit.
-  //  * ```ts
-  //  *  [{ name: 'xs', width: 0 }, { name: 'md', width: 768 }] // change from `xs` to `md`
-  //  * ```
-  //  * @returns {Observable<[NbMediaBreakpoint, NbMediaBreakpoint]>}
-  //  */
+  /*
+   * Triggers media query breakpoint change
+   * Returns a pair where the first item is previous media breakpoint and the second item is current breakpoit.
+   * ```ts
+   *  [{ name: 'xs', width: 0 }, { name: 'md', width: 768 }] // change from `xs` to `md`
+   * ```
+   * @returns {Observable<[NbMediaBreakpoint, NbMediaBreakpoint]>}
+   */
   onMediaQueryChange(): Observable<NbMediaBreakpoint[]> {
     return this.changeWindowWidth$
       .pipe(
@@ -114,7 +79,7 @@ export class NbThemeService {
           return [
             this.breakpointService.getByWidth(prevWidth),
             this.breakpointService.getByWidth(width),
-          ];
+          ]
         }),
         filter(([prevPoint, point]: [NbMediaBreakpoint, NbMediaBreakpoint]) => {
           return prevPoint.name !== point.name;
@@ -130,14 +95,6 @@ export class NbThemeService {
    */
   onThemeChange(): Observable<any> {
     return this.themeChanges$.pipe(share());
-  }
-
-  onAppendToTop(): Observable<any> {
-    return this.appendToLayoutTop$.pipe(share());
-  }
-
-  onClearLayoutTop(): Observable<any> {
-    return this.createLayoutTop$.pipe(share());
   }
 
   /*

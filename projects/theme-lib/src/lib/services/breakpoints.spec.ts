@@ -26,7 +26,7 @@ describe('breakpoint-service', () => {
   beforeEach(async(inject(
     [NbMediaBreakpointsService],
     (_breakpointService) => {
-      breakpointService = _breakpointService;
+      breakpointService = _breakpointService
     },
   )));
 

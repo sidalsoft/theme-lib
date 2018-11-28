@@ -15,6 +15,11 @@
     "npm_pack": "cd dist/theme-lib && npm pack",
     "package": "npm run build_lib && npm run copy-files && npm run npm_pack"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "cd projects/theme-lib && npm version patch"
+    }
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~7.0.0",
@@ -27,6 +32,8 @@
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
     "bootstrap": "4.0.0",
+    "@angular/cdk": "^7.0.0",
+    "nebular-icons": "^1.1.0",
     "@ngx-translate/core": "~11.0.1",
     "core-js": "^2.5.4",
     "rxjs": "~6.3.3",

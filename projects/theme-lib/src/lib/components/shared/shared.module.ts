@@ -8,15 +8,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-    exports: [
-        CommonModule,
-        // TODO: probably we don't need FormsModule in SharedModule
-        FormsModule,
-        RouterModule,
-      TranslateModule,
-    ],
+  exports: [
+    CommonModule,
+    // TODO: probably we don't need FormsModule in SharedModule
+    FormsModule,
+    RouterModule,
+  ],
 })
 export class NbSharedModule { }

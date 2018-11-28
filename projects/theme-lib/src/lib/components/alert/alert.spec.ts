@@ -27,7 +27,7 @@ describe('Component: NbAlert', () => {
     expect(
       fixture
         .debugElement.nativeElement.classList.contains('danger-alert'))
-      .toBeTruthy();
+      .toBeTruthy()
   });
 
   it('should set outline class', () => {
@@ -36,7 +36,7 @@ describe('Component: NbAlert', () => {
     expect(
       fixture
         .debugElement.nativeElement.classList.contains('outline-success'))
-      .toBeTruthy();
+      .toBeTruthy()
   });
 
   it('should set shape class', () => {
@@ -45,7 +45,7 @@ describe('Component: NbAlert', () => {
     expect(
       fixture
         .debugElement.nativeElement.classList.contains('accent-warning'))
-      .toBeTruthy();
+      .toBeTruthy()
   });
 
   it('should set size class', () => {
@@ -54,6 +54,6 @@ describe('Component: NbAlert', () => {
     expect(
       fixture
         .debugElement.nativeElement.classList.contains('xxsmall-alert'))
-      .toBeTruthy();
+      .toBeTruthy()
   });
 });

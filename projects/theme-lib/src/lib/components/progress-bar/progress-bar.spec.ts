@@ -33,7 +33,7 @@ describe('Component: NbProgressBar', () => {
       fixture
         .debugElement
         .query(By.css('.progress-value')).nativeElement.classList.contains('danger'))
-      .toBeTruthy();
+      .toBeTruthy()
   });
 
   it('Setting size sm should set class sm', () => {
@@ -43,7 +43,7 @@ describe('Component: NbProgressBar', () => {
       fixture
         .debugElement
         .query(By.css('.progress-container')).nativeElement.classList.contains('sm'))
-      .toBeTruthy();
+      .toBeTruthy()
   });
 
   it('Setting displayValue should create span with value label', () => {
@@ -54,7 +54,7 @@ describe('Component: NbProgressBar', () => {
       fixture
         .debugElement
         .query(By.css('.progress-value span')).nativeElement.innerHTML)
-      .toContain('40%');
+      .toContain('40%')
   });
 
 });

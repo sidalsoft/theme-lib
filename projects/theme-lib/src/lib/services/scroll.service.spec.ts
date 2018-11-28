@@ -56,7 +56,7 @@ describe('NbScrollService', () => {
 
   beforeEach(() => {
     fixture = TestBed.configureTestingModule({
-      imports: [ RouterModule.forRoot([]), NbThemeModule.forRoot({ name: 'default' }), NbLayoutModule ],
+      imports: [ RouterModule.forRoot([]), NbThemeModule.forRoot(), NbLayoutModule ],
       providers: [ NbLayoutScrollService, NbThemeService, { provide: APP_BASE_HREF, useValue: '/' } ],
       declarations: [ ScrollTestComponent ],
     })
@@ -88,7 +88,7 @@ describe('NbScrollService', () => {
         expect(pos.x).toEqual(0);
         expect(pos.y).toEqual(0);
         done();
-      });
+      })
   });
 
   it('should get initial scroll position as nothing to scroll', (done) => {
@@ -99,7 +99,7 @@ describe('NbScrollService', () => {
         expect(pos.x).toEqual(0);
         expect(pos.y).toEqual(0);
         done();
-      });
+      })
   });
 
   it('should get updated scroll position', (done) => {
@@ -111,7 +111,7 @@ describe('NbScrollService', () => {
         expect(pos.x).toEqual(10);
         expect(pos.y).toEqual(10);
         done();
-      });
+      })
   });
 
   it('should get initial scroll position on scrollable', (done) => {

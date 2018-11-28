@@ -27,7 +27,7 @@ describe('Component: NbSpinner', () => {
     expect(
       fixture
         .debugElement.nativeElement.classList.contains('danger-spinner'))
-      .toBeTruthy();
+      .toBeTruthy()
   });
 
   it('should set size small', () => {
@@ -36,7 +36,7 @@ describe('Component: NbSpinner', () => {
     expect(
       fixture
         .debugElement.nativeElement.classList.contains('small-spinner'))
-      .toBeTruthy();
+      .toBeTruthy()
   });
 
   it('should set message', () => {

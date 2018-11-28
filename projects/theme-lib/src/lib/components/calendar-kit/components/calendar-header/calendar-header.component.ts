@@ -7,6 +7,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { NbLayoutDirectionService } from '../../../../services/direction.service';
+import { NbDateService } from '../../services';
 
 
 @Component({
@@ -14,18 +15,19 @@ import { NbLayoutDirectionService } from '../../../../services/direction.service
   template: `
     <div class="header">
       <span class="title" (click)="navigateToday.emit()">
-        {{ date | nbCalendarDate }}
+        {{ date | date: 'mediumDate' }}
         <i [ngClass]="{ 'nb-arrow-dropright': isLtr, 'nb-arrow-dropleft': isRtl }"></i>
       </span>
       <span class="sub-title">Today</span>
     </div>
   `,
 })
-export class NbCalendarHeaderComponent {
-  @Input() date: Date = new Date();
+export class NbCalendarHeaderComponent<D> {
+  @Input() date: D;
   @Output() navigateToday: EventEmitter<void> = new EventEmitter();
 
-  constructor(private directionService: NbLayoutDirectionService) {
+  constructor(protected directionService: NbLayoutDirectionService, protected dateService: NbDateService<D>) {
+    this.date = this.dateService.today();
   }
 
   get isRtl(): boolean {

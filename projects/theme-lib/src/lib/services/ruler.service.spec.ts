@@ -51,7 +51,7 @@ describe('NbLayoutRulerService', () => {
 
   beforeEach(() => {
     fixture = TestBed.configureTestingModule({
-      imports: [ RouterModule.forRoot([]), NbThemeModule.forRoot({ name: 'default' }), NbLayoutModule ],
+      imports: [ RouterModule.forRoot([]), NbThemeModule.forRoot(), NbLayoutModule ],
       providers: [ NbLayoutRulerService, NbThemeService, { provide: APP_BASE_HREF, useValue: '/' } ],
       declarations: [ RulerTestComponent ],
     })
@@ -85,7 +85,7 @@ describe('NbLayoutRulerService', () => {
         expect(size.scrollHeight).toEqual(currentDocument.documentElement.scrollHeight);
         expect(size.scrollWidth).toEqual(currentDocument.documentElement.scrollWidth);
         done();
-      });
+      })
   });
 
   it('should get dimensions from document when scrolls', (done) => {
@@ -98,7 +98,7 @@ describe('NbLayoutRulerService', () => {
         expect(size.scrollHeight).toEqual(currentDocument.documentElement.scrollHeight);
         expect(size.scrollWidth).toEqual(currentDocument.documentElement.scrollWidth);
         done();
-      });
+      })
   });
 
   it('should get dimensions from scrollable', (done) => {
@@ -112,7 +112,7 @@ describe('NbLayoutRulerService', () => {
         expect(size.scrollHeight).toEqual(scrollable.scrollHeight);
         expect(size.scrollWidth).toEqual(scrollable.scrollWidth);
         done();
-      });
+      })
   });
 
   it('should get dimensions from scrollable when scrolls', (done) => {
@@ -127,7 +127,7 @@ describe('NbLayoutRulerService', () => {
         expect(size.scrollHeight).toEqual(scrollable.scrollHeight);
         expect(size.scrollWidth).toEqual(scrollable.scrollWidth);
         done();
-      });
+      })
   });
 
 });

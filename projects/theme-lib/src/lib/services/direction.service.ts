@@ -8,7 +8,7 @@ import { share } from 'rxjs/operators';
 export enum NbLayoutDirection {
   LTR = 'ltr',
   RTL = 'rtl',
-}
+};
 
 /*
  * Layout direction setting injection token.

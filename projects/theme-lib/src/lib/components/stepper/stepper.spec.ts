@@ -31,7 +31,7 @@ describe('Component: NbStepper', () => {
     expect(
       fixture
         .debugElement.nativeElement.classList.contains('vertical'))
-      .toBeTruthy();
+      .toBeTruthy()
   });
 
 });

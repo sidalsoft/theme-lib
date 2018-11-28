@@ -27,7 +27,7 @@ describe('Component: NbButton', () => {
     expect(
       fixture
         .debugElement.nativeElement.classList.contains('btn-danger'))
-      .toBeTruthy();
+      .toBeTruthy()
   });
 
   it('should set size small', () => {
@@ -36,7 +36,7 @@ describe('Component: NbButton', () => {
     expect(
       fixture
         .debugElement.nativeElement.classList.contains('btn-small'))
-      .toBeTruthy();
+      .toBeTruthy()
   });
 
   it('should set outline class', () => {
@@ -45,7 +45,7 @@ describe('Component: NbButton', () => {
     expect(
       fixture
         .debugElement.nativeElement.classList.contains('btn-outline'))
-      .toBeTruthy();
+      .toBeTruthy()
   });
 
   it('should set hero class', () => {
@@ -54,7 +54,7 @@ describe('Component: NbButton', () => {
     expect(
       fixture
         .debugElement.nativeElement.classList.contains('btn-hero'))
-      .toBeTruthy();
+      .toBeTruthy()
   });
 
   it('should set shape class', () => {
@@ -63,7 +63,7 @@ describe('Component: NbButton', () => {
     expect(
       fixture
         .debugElement.nativeElement.classList.contains('btn-semi-round'))
-      .toBeTruthy();
+      .toBeTruthy()
   });
 
   it('should set full-width class', () => {
@@ -72,6 +72,6 @@ describe('Component: NbButton', () => {
     expect(
       fixture
         .debugElement.nativeElement.classList.contains('btn-full-width'))
-      .toBeTruthy();
+      .toBeTruthy()
   });
 });

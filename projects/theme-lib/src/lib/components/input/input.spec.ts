@@ -4,7 +4,7 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, ViewChild, ElementRef, Input } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NbInputDirective } from './input.directive';
 import { NbInputModule } from './input.module';
@@ -44,7 +44,7 @@ describe('Directive: NbInput', () => {
   let inputElement: Element;
   let textareaElement: Element;
 
-  beforeEach(() => {
+  beforeEach(() => {;
 
     fixture = TestBed.configureTestingModule({
         imports: [ NbInputModule ],
